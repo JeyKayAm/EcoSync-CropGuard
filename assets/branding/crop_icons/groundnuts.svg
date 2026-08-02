@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <g>
+    <path d="M46 30 C 40 20 26 20 22 30 C 18 39 26 46 34 44 C 34 44 34 44 34 44"
+          fill="none" stroke="#4C8C46" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="30" cy="26" rx="9" ry="6" fill="#66BB6A" transform="rotate(-30 30 26)"/>
+    <ellipse cx="44" cy="22" rx="9" ry="6" fill="#66BB6A" transform="rotate(10 44 22)"/>
+  </g>
+  <line x1="46" y1="32" x2="52" y2="46" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="40" cy="62" rx="20" ry="16" fill="#C68B59" transform="rotate(-18 40 62)"/>
+  <ellipse cx="68" cy="56" rx="17" ry="14" fill="#D39A6A" transform="rotate(14 68 56)"/>
+  <path d="M54 58 C 57 60 57 64 54 66" fill="none" stroke="#A9713F" stroke-width="2.6" stroke-linecap="round"/>
+  <g stroke="#A9713F" stroke-width="1.6" stroke-linecap="round" opacity="0.8">
+    <line x1="30" y1="52" x2="34" y2="72"/>
+    <line x1="38" y1="50" x2="42" y2="72"/>
+    <line x1="46" y1="52" x2="49" y2="70"/>
+    <line x1="60" y1="46" x2="63" y2="66"/>
+    <line x1="68" y1="44" x2="71" y2="66"/>
+    <line x1="76" y1="48" x2="78" y2="64"/>
+  </g>
+</svg>

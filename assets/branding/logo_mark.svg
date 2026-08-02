@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#388E3C"/>
+      <stop offset="100%" stop-color="#1B5E20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield -->
+  <path d="M50 4
+           C 66 4 82 10 92 18
+           L 92 46
+           C 92 72 74 90 50 97
+           C 26 90 8 72 8 46
+           L 8 18
+           C 18 10 34 4 50 4
+           Z"
+        fill="url(#shieldGrad)"/>
+
+  <!-- Leaf -->
+  <path d="M50 22
+           C 68 26 74 44 62 58
+           C 56 65 44 65 38 58
+           C 26 44 32 26 50 22
+           Z"
+        fill="#F1F8E9"/>
+  <path d="M50 25 C 45 36 45 50 50 61"
+        fill="none" stroke="#388E3C" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M50 62 C 47 68 45 72 42 77"
+        fill="none" stroke="#F1F8E9" stroke-width="3.4" stroke-linecap="round"/>
+
+  <!-- Magnifying glass (diagnosis accent) -->
+  <circle cx="66" cy="63" r="9" fill="none" stroke="#5D4037" stroke-width="4.2"/>
+  <line x1="72.5" y1="69.5" x2="80" y2="77" stroke="#5D4037" stroke-width="4.4" stroke-linecap="round"/>
+</svg>

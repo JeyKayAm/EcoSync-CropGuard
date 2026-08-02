@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path d="M50 10
+           C 80 18 92 44 80 66
+           C 71 83 58 92 50 94
+           C 42 92 29 83 20 66
+           C 8 44 20 18 50 10
+           Z" fill="#4C8C46"/>
+  <path d="M50 16 L 50 90" fill="none" stroke="#3E6B39" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M50 30 L 34 22 M50 42 L 30 36 M50 54 L 30 52 M50 66 L 34 68
+           M50 30 L 66 22 M50 42 L 70 36 M50 54 L 70 52 M50 66 L 66 68"
+        fill="none" stroke="#3E6B39" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

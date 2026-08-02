@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <!-- Leaf + magnifying glass only (no shield backdrop) — translated +4,+4
+       from the 100x100 logo_mark so it sits inside the adaptive-icon
+       66dp safe zone once the OS applies its own mask/background. -->
+  <g transform="translate(4,4)">
+    <path d="M50 22
+             C 68 26 74 44 62 58
+             C 56 65 44 65 38 58
+             C 26 44 32 26 50 22
+             Z"
+          fill="#F1F8E9"/>
+    <path d="M50 25 C 45 36 45 50 50 61"
+          fill="none" stroke="#388E3C" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M50 62 C 47 68 45 72 42 77"
+          fill="none" stroke="#F1F8E9" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="66" cy="63" r="9" fill="none" stroke="#5D4037" stroke-width="4.2"/>
+    <line x1="72.5" y1="69.5" x2="80" y2="77" stroke="#5D4037" stroke-width="4.4" stroke-linecap="round"/>
+  </g>
+</svg>
