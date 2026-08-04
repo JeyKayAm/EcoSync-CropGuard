@@ -1,3 +1,7 @@
+/// A recommended treatment/product for a [Disease]. Every record carries a
+/// bibliographic [source] so treatment advice shown in the app stays
+/// traceable to the agronomic literature it came from (see SOURCES.md-style
+/// attribution in README's Data Sources section).
 class Treatment {
   final int id;
   final int diseaseId;

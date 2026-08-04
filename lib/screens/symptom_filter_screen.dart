@@ -6,6 +6,9 @@ import '../utils/constants.dart';
 import '../widgets/disease_card.dart';
 import 'disease_detail_screen.dart';
 
+/// Lists diseases for a crop, optionally narrowed to one plant part
+/// (`plantPart == null` shows all of them). Reached either from a plant-part
+/// tile on [CropDetailScreen] or its "Show All Diseases" fallback.
 class SymptomFilterScreen extends StatefulWidget {
   final Crop crop;
   final String? plantPart;

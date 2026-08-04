@@ -1,3 +1,5 @@
+/// A single observable symptom of a [Disease], used by [DiagnosticService]
+/// to match user-selected symptoms back to candidate diseases.
 class Symptom {
   final int id;
   final int diseaseId;

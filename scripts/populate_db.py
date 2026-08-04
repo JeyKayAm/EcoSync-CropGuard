@@ -128,7 +128,7 @@ DISEASES = [
      'leaf', 'High',
      'Pale yellow streaks along leaf veins, beginning on youngest leaves. Severely infected plants are stunted and fail to produce cobs. Most damaging when infection occurs in the first 3–4 weeks after germination.',
      'Plant MSV-tolerant/resistant varieties. Control leafhopper vectors with insecticide seed dressing. Early planting to escape peak leafhopper populations.',
-     'assets/images/maize/msv_1.jpg'),
+     'assets/images/maize/msv_1.jpg,assets/images/maize/msv_2.jpg'),
 
     (4, 1, 'Common Rust',
      'Puccinia sorghi (fungus)',
@@ -142,7 +142,7 @@ DISEASES = [
      'stem', 'High',
      'Internal pith discolouration (pink to salmon) with shredding of stalk tissue. Infected plants lodge (fall over) before harvest. External symptoms include bleached internodes and dead lower leaves.',
      'Avoid water stress and mechanical damage. Balance soil nutrition — excess nitrogen increases susceptibility. Harvest promptly when mature. Rotate with legumes.',
-     'assets/images/maize/stalk_rot_1.jpg,assets/images/maize/stalk_rot_2.jpg,assets/images/maize/stalk_rot_3.jpg'),
+     'assets/images/maize/stalk_rot_1.jpg'),
 
     # ── TOBACCO (crop_id=2) ────────────────────────────────────
     (6, 2, 'Blue Mould',
@@ -164,7 +164,7 @@ DISEASES = [
      'leaf', 'Medium',
      'Mosaic pattern of light and dark green patches on leaves. Leaves may be distorted, blistered, or reduced in size. Mechanically transmitted by hands, tools, and clothing.',
      'Use TMV-tolerant varieties. Wash hands thoroughly with soap before handling plants. Disinfect tools. Do not smoke near plants (cigarettes carry TMV). Control aphid vectors.',
-     'assets/images/tobacco/tmv_1.jpg'),
+     'assets/images/tobacco/tmv_1.jpg,assets/images/tobacco/tmv_2.jpg'),
 
     (9, 2, 'Frogeye Leaf Spot',
      'Cercospora nicotianae (fungus)',
@@ -178,7 +178,7 @@ DISEASES = [
      'leaf', 'Medium',
      'Water-soaked spots that turn brown with a characteristic yellow halo. The yellow halo distinguishes wildfire from angular leaf spot. Lesions coalesce under wet conditions.',
      'Avoid working in fields when foliage is wet. Use copper-based bactericides preventively. Ensure good drainage. Destroy infected plant material.',
-     'assets/images/tobacco/wildfire_1.jpg,assets/images/tobacco/wildfire_2.jpg,assets/images/tobacco/wildfire_3.jpg'),
+     'assets/images/tobacco/wildfire_1.jpg'),
 
     # ── GROUNDNUTS (crop_id=3) ──────────────────────────────────
     (11, 3, 'Groundnut Rosette Virus',
@@ -193,28 +193,28 @@ DISEASES = [
      'leaf', 'Medium',
      'Small circular dark brown to black spots with a pale yellow halo, appearing first on the upper leaf surface of older leaves. Severe infection causes premature leaf drop, reducing pod fill and yield.',
      'Apply protective fungicide from 30 days after emergence. Rotate with cereals (maize, sorghum) for at least 2 seasons. Remove and destroy crop residue after harvest.',
-     'assets/images/groundnuts/early_leaf_spot_1.jpg,assets/images/groundnuts/early_leaf_spot_2.jpg,assets/images/groundnuts/early_leaf_spot_3.jpg'),
+     'assets/images/groundnuts/early_leaf_spot_1.jpg'),
 
     (13, 3, 'Late Leaf Spot',
      'Phaeoisariopsis personata (fungus)',
      'leaf', 'High',
      'Circular, darker, more uniformly black spots than early leaf spot, usually appearing later in the season. Underside of the spot is rough/velvety with visible fungal fruiting structures. Causes significant defoliation under wet conditions, often more damaging than early leaf spot.',
      'Apply fungicide at first sign, especially after early leaf spot has been seen earlier in the season. Use resistant or tolerant varieties recommended by ICRISAT. Avoid late planting.',
-     'assets/images/groundnuts/late_leaf_spot_1.jpg,assets/images/groundnuts/late_leaf_spot_2.jpg,assets/images/groundnuts/late_leaf_spot_3.jpg'),
+     'assets/images/groundnuts/late_leaf_spot_1.jpg'),
 
     (14, 3, 'Aflatoxin Contamination',
      'Aspergillus flavus (fungus)',
      'whole', 'High',
      'Fungal contamination of pods and kernels, most severe under drought stress during pod-fill and during damp post-harvest storage. Produces aflatoxin, a carcinogenic toxin that is invisible without laboratory testing but renders grain unsafe for human and animal consumption.',
      'Avoid drought stress during pod development where irrigation is possible. Harvest promptly at maturity, dry pods to below 8% moisture before storage, and store in clean, dry, well-ventilated containers. Discard visibly mouldy or discoloured kernels.',
-     'assets/images/groundnuts/aflatoxin_1.jpg,assets/images/groundnuts/aflatoxin_2.jpg,assets/images/groundnuts/aflatoxin_3.jpg'),
+     'assets/images/groundnuts/aflatoxin_1.jpg'),
 
     (15, 3, 'Groundnut Rosette Assistor Virus (GRAV)',
      'Groundnut rosette assistor virus — aphid-transmitted (Aphis craccivora)',
      'leaf', 'Medium',
      'Causes only mild mosaic or no visible symptoms when present alone, but is the helper virus required for the aphid to transmit Groundnut Rosette Virus between plants. Fields with high GRAV presence carry elevated risk of a severe rosette outbreak.',
      'Same vector-control measures as Groundnut Rosette Virus: control aphids, plant cereal border rows, use tolerant varieties, and rogue out volunteer groundnut plants between seasons that could harbour the virus.',
-     'assets/images/groundnuts/grav_1.jpg,assets/images/groundnuts/grav_2.jpg,assets/images/groundnuts/grav_3.jpg'),
+     ''),
 
     # ── SORGHUM (crop_id=4) ──────────────────────────────────────
     (16, 4, 'Sorghum Downy Mildew',
@@ -222,21 +222,21 @@ DISEASES = [
      'whole', 'High',
      'Systemic infection visible from early seedling stage as chlorotic striping along leaf veins, with white downy fungal growth on the underside in humid mornings. Severely infected shoots are stunted, fail to produce a normal head, and may produce a sterile, leafy "green ear" instead of grain.',
      'Plant certified, treated seed. Rotate with non-cereal crops for at least one season. Remove and destroy infected plants as soon as identified, before sporulation spreads the disease.',
-     'assets/images/sorghum/downy_mildew_1.jpg,assets/images/sorghum/downy_mildew_2.jpg,assets/images/sorghum/downy_mildew_3.jpg'),
+     'assets/images/sorghum/downy_mildew_1.jpg'),
 
     (17, 4, 'Head Smut',
      'Sporisorium reilianum (fungus)',
      'cob', 'High',
      'The entire grain head is replaced by a grey-black powdery mass of fungal spores, initially enclosed in a thin membrane that ruptures to release spores. Infected plants are often slightly stunted before head emergence reveals the disease. Soil-borne and seed-borne.',
      'Use certified, fungicide-treated seed. Rotate with non-host crops for 2+ seasons in fields with a history of head smut. Remove and burn smutted heads before the membrane ruptures to limit soil spore load.',
-     'assets/images/sorghum/head_smut_1.jpg,assets/images/sorghum/head_smut_2.jpg,assets/images/sorghum/head_smut_3.jpg'),
+     'assets/images/sorghum/head_smut_1.jpg'),
 
     (18, 4, 'Anthracnose',
      'Colletotrichum sublineola (fungus)',
      'leaf', 'High',
      'Small circular to oval red, tan, or straw-coloured lesions with dark margins on leaves, which can coalesce in severe infections. The same pathogen can also cause stalk rot and head blight later in the season, the latter discolouring grain and reducing quality.',
      'Plant resistant or tolerant varieties. Rotate with non-host crops. Avoid excessive nitrogen fertilization, which increases susceptibility. Remove and destroy crop residue after harvest.',
-     'assets/images/sorghum/anthracnose_1.jpg'),
+     'assets/images/sorghum/anthracnose_1.jpg,assets/images/sorghum/anthracnose_2.jpg'),
 
     (19, 4, 'Sorghum Ergot',
      'Claviceps africana (fungus)',
@@ -250,7 +250,7 @@ DISEASES = [
      'leaf', 'Medium',
      'Elongated, tan to grey-green lesions with reddish-purple borders on leaves, beginning on lower leaves and progressing upward. Severe infection reduces the photosynthetic leaf area available during grain fill, lowering yield.',
      'Plant resistant or tolerant varieties. Ensure adequate plant spacing for airflow. Rotate with non-host crops to reduce residue-borne inoculum.',
-     'assets/images/sorghum/leaf_blight_1.jpg,assets/images/sorghum/leaf_blight_2.jpg,assets/images/sorghum/leaf_blight_3.jpg'),
+     'assets/images/sorghum/leaf_blight_1.jpg'),
 
     # ── SWEET POTATOES (crop_id=5) ────────────────────────────────
     (21, 5, 'Sweet Potato Virus Disease (SPVD)',
@@ -258,35 +258,35 @@ DISEASES = [
      'leaf', 'High',
      'Severe stunting, leaf distortion, vein clearing or purpling, and chlorotic mottling. SPVD results from two viruses infecting the same plant together; the combination is dramatically more damaging than either virus alone, capable of causing total yield loss in susceptible varieties.',
      'Use certified virus-free planting material (vines) rather than re-using vines from a previous infected crop. Control whitefly and aphid vectors. Rogue out and destroy infected plants early. Plant tolerant varieties where available.',
-     'assets/images/sweet_potatoes/spvd_1.jpg,assets/images/sweet_potatoes/spvd_2.jpg,assets/images/sweet_potatoes/spvd_3.jpg'),
+     'assets/images/sweet_potatoes/spvd_1.jpg'),
 
     (22, 5, 'Alternaria Leaf Blight',
      'Alternaria bataticola (fungus)',
      'leaf', 'Medium',
      'Irregular brown to black spots with concentric ring patterns on leaves, sometimes with a yellow halo. Severe infection causes premature defoliation, which reduces the plant\u2019s ability to bulk roots.',
      'Avoid overhead irrigation. Maintain adequate spacing for airflow. Remove and destroy heavily infected vines. Apply protective fungicide in high-risk wet seasons.',
-     'assets/images/sweet_potatoes/alternaria_1.jpg,assets/images/sweet_potatoes/alternaria_2.jpg,assets/images/sweet_potatoes/alternaria_3.jpg'),
+     'assets/images/sweet_potatoes/alternaria_1.jpg'),
 
     (23, 5, 'Black Rot',
      'Ceratocystis fimbriata (fungus)',
      'root', 'High',
      'Circular, sunken, dark brown to black lesions on storage roots, with a greenish-black discolouration in the flesh beneath and a bitter taste that develops even in unaffected tissue of the same root. Spreads readily in storage, destroying entire batches.',
      'Use disease-free planting material from clean nursery beds. Practice crop rotation of 3+ years in affected fields. Cure roots properly after harvest and inspect carefully before storage; discard any lesioned roots immediately.',
-     'assets/images/sweet_potatoes/black_rot_1.jpg'),
+     'assets/images/sweet_potatoes/black_rot_1.jpg,assets/images/sweet_potatoes/black_rot_2.jpg'),
 
     (24, 5, 'Fusarium Wilt',
      'Fusarium oxysporum f. sp. batatas (fungus)',
      'whole', 'High',
      'Yellowing and wilting beginning with the lower, older leaves and progressing upward. Internal vascular tissue shows brown discolouration when the stem base is cut. Infected plants are stunted and may die before harvest, especially under heat or moisture stress.',
      'Use resistant or tolerant varieties. Plant only certified disease-free vines. Rotate with non-host crops for several seasons in fields with a history of wilt.',
-     'assets/images/sweet_potatoes/fusarium_wilt_1.jpg,assets/images/sweet_potatoes/fusarium_wilt_2.jpg,assets/images/sweet_potatoes/fusarium_wilt_3.jpg'),
+     'assets/images/sweet_potatoes/fusarium_wilt_1.jpg,assets/images/sweet_potatoes/fusarium_wilt_2.jpg'),
 
     (25, 5, 'Scurf',
      'Monilochaetes infuscans (fungus)',
      'root', 'Low',
      'Superficial dark brown to black blemishes on the skin of storage roots, which do not affect the internal flesh or eating quality but significantly reduce market appearance and value. Spreads in storage between roots in contact with each other under humid conditions.',
      'Plant disease-free vine cuttings from clean nursery stock. Rotate fields. Cure and store roots in a well-ventilated, moderately dry environment to limit spread between roots.',
-     'assets/images/sweet_potatoes/scurf_1.jpg,assets/images/sweet_potatoes/scurf_2.jpg,assets/images/sweet_potatoes/scurf_3.jpg'),
+     'assets/images/sweet_potatoes/scurf_1.jpg'),
 ]
 
 # ─── Symptoms ─────────────────────────────────────────────────

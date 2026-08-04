@@ -5,6 +5,9 @@ import '../services/treatment_service.dart';
 import '../utils/constants.dart';
 import '../widgets/treatment_card.dart';
 
+/// Lists a disease's treatments, organic options first (see
+/// [TreatmentService.getTreatments]), with the standing decision-support
+/// disclaimer shown at the bottom.
 class TreatmentGuideScreen extends StatefulWidget {
   final Disease disease;
 

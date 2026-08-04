@@ -20,7 +20,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
   flutter_lints: ^4.0.0
+  sqflite_common_ffi: ^2.3.4          # Real SQLite (no platform channel) for host-run unit tests
+  path_provider_platform_interface: ^2.1.2  # Lets unit tests fake getApplicationDocumentsDirectory()
 
 flutter:
   uses-material-design: true

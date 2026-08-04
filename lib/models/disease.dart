@@ -1,3 +1,6 @@
+/// A crop disease record, mirroring the `diseases` table. [imagePaths] is
+/// stored in SQLite as a single comma-joined column (`image_paths`), so
+/// [fromMap] splits it back into a list here rather than using a join table.
 class Disease {
   final int id;
   final int cropId;

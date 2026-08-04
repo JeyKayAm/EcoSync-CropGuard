@@ -1,3 +1,5 @@
+/// One of the app's 5 supported crops (maize, tobacco, groundnuts, sorghum,
+/// sweet potatoes). Mirrors the `crops` table seeded by `scripts/populate_db.py`.
 class Crop {
   final int id;
   final String name;

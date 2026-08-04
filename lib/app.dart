@@ -4,6 +4,8 @@ import 'providers/app_state_provider.dart';
 import 'screens/home_screen.dart';
 import 'utils/constants.dart';
 
+/// App root: wraps everything in the single [AppStateProvider] instance and
+/// kicks off its [AppStateProvider.init] load.
 class EcoSyncApp extends StatelessWidget {
   const EcoSyncApp({super.key});
 

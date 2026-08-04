@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Shared, static values referenced across screens/widgets: brand colours,
+/// the fixed plant-part list/ordering used by diagnosis and filtering, theme
+/// options for Settings, and the standing decision-support disclaimer text.
+
 // ─── App Identity ──────────────────────────────────────────────
 const String kAppName = 'EcoSync-CropGuard';
 const String kAppVersion = '1.0.0';

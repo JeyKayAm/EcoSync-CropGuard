@@ -6,6 +6,11 @@ import '../widgets/plant_part_card.dart';
 import 'crop_gallery_screen.dart';
 import 'symptom_filter_screen.dart';
 
+/// A crop's landing page: two diagnosis paths branch from here — a visual
+/// photo comparison ([CropGalleryScreen]) or narrowing down by plant part
+/// ([SymptomFilterScreen]). Plant-part options shown are only the ones that
+/// actually have diseases recorded for this crop (see
+/// [DiagnosticService.getAvailablePlantParts]).
 class CropDetailScreen extends StatefulWidget {
   final Crop crop;
 

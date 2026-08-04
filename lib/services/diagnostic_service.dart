@@ -2,6 +2,9 @@ import '../models/disease.dart';
 import '../models/symptom.dart';
 import 'database_helper.dart';
 
+/// Read-only queries backing the symptom-based diagnosis flow: narrowing
+/// diseases by crop/plant-part, then listing a chosen disease's symptoms.
+/// This is a lookup/filter tool, not image-based ML detection.
 class DiagnosticService {
   final DatabaseHelper _db = DatabaseHelper.instance;
 

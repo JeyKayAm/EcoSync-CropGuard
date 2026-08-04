@@ -4,6 +4,9 @@ import '../providers/app_state_provider.dart';
 import '../services/diagnostic_service.dart';
 import 'disease_detail_screen.dart';
 
+/// Lists saved diagnoses from [AppStateProvider]. Tapping one re-fetches the
+/// full [Disease] record by id (bookmarks only store a name/id snapshot, not
+/// the whole record) before navigating to its detail screen.
 class BookmarksScreen extends StatelessWidget {
   const BookmarksScreen({super.key});
 

@@ -6,6 +6,8 @@ Offline-first crop disease diagnostic Android app for Zimbabwean smallholder far
 **Platform:** Android only (Flutter/Dart)  
 **Database:** SQLite (cropguard.db)
 
+See [CLAUDE.md](CLAUDE.md) for architecture details and conventions.
+
 ---
 
 ## Setup
@@ -66,6 +68,29 @@ Images should be JPEG, max 800×600 px, quality 75 (use ImageMagick to compress)
 ```bash
 magick input.jpg -resize 800x600> -quality 75 output.jpg
 ```
+
+### Image pipeline scripts
+
+If ImageMagick isn't available, or you're sourcing photos from open datasets
+instead of adding them by hand:
+
+- `scripts/prepare_images.py` — downloads open agricultural disease-image
+  datasets (PlantVillage via kagglehub, plus manually-downloaded Mendeley
+  sets) and crops/resizes a subset into `assets/images/<crop>/<disease_code>_<n>.jpg`.
+  Coverage is partial by design — only diseases with a known public dataset
+  are filled; the script prints a summary of what's covered vs. still needing
+  field photography. Requires a Kaggle account/API token; see the script's
+  module docstring for full details, dataset URLs, and licensing notes.
+- `scripts/compress_image.py <in> <out>` — resizes/compresses a single image
+  to the 800×600 / quality-75 spec above, as a substitute when ImageMagick
+  isn't installed.
+- `scripts/generate_icons_test.dart` — rasterizes the hand-drawn SVG brand
+  marks (`assets/branding/`) into the PNG launcher icon and splash screen
+  sizes Android needs. Run explicitly (it's outside `test/` so the normal
+  test suite never picks it up):
+  ```bash
+  flutter test scripts/generate_icons_test.dart
+  ```
 
 ## Data Sources
 

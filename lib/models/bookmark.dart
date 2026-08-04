@@ -1,3 +1,5 @@
+/// A user's saved reference to a disease, persisted via [BookmarkService].
+/// Mirrors the `bookmarks` table; [fromMap]/[toMap] match its column names.
 class Bookmark {
   final int? id; // nullable — null before first insert
   final int diseaseId;

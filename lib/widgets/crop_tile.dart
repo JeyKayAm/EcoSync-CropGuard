@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../models/crop.dart';
 
+/// A row entry in the home screen's crop list — icon, name, and local name.
 class CropTile extends StatelessWidget {
   final Crop crop;
   final VoidCallback onTap;

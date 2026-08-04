@@ -8,6 +8,8 @@ import 'bookmarks_screen.dart';
 import 'crop_detail_screen.dart';
 import 'settings_screen.dart';
 
+/// Landing screen: pick a crop to start diagnosis, or jump to bookmarks/
+/// settings. Crop list comes from [AppStateProvider], loaded once at startup.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

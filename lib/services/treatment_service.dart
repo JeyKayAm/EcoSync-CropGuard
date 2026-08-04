@@ -1,6 +1,7 @@
 import '../models/treatment.dart';
 import 'database_helper.dart';
 
+/// Read-only queries backing the treatment guide screen.
 class TreatmentService {
   final DatabaseHelper _db = DatabaseHelper.instance;
 

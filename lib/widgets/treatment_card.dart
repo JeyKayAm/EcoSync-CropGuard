@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/treatment.dart';
 import '../utils/constants.dart';
 
+/// One treatment record on [TreatmentGuideScreen] — organic/chemical badge,
+/// product info, dosage, and its bibliographic [Treatment.source].
 class TreatmentCard extends StatelessWidget {
   final Treatment treatment;
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// One tappable tile in [CropDetailScreen]'s plant-part grid (leaf/stem/
+/// root/cob/whole) — `icon` is a plain emoji string, not an [IconData].
 class PlantPartCard extends StatelessWidget {
   final String icon;
   final String label;

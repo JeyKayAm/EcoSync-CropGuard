@@ -6,6 +6,9 @@ import '../services/bookmark_service.dart';
 import '../services/database_helper.dart';
 import '../utils/constants.dart';
 
+/// App-wide state: the crop list, bookmarks, loading flag, and the user's
+/// chosen theme colour — the single source of truth widgets subscribe to
+/// via [Provider]/[Consumer] rather than each screen querying the DB itself.
 class AppStateProvider extends ChangeNotifier {
   static const _themeSeedPrefKey = 'theme_seed_argb';
 

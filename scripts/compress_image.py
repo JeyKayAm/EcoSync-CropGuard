@@ -8,5 +8,5 @@ from PIL import Image
 src, dst = sys.argv[1], sys.argv[2]
 img = Image.open(src).convert('RGB')
 img.thumbnail((800, 600), Image.LANCZOS)
-img.save(dst, 'JPEG', quality=75)
+img.save(dst, 'JPEG', quality=100)
 print(f'{dst}: {img.size[0]}x{img.size[1]}')

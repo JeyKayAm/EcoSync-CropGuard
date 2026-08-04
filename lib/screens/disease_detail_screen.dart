@@ -9,6 +9,11 @@ import '../utils/constants.dart';
 import 'image_gallery_screen.dart';
 import 'treatment_guide_screen.dart';
 
+/// Full profile for one disease: photos, pathogen/severity/plant-part chips,
+/// description, prevention, symptoms by stage, and a link to the treatment
+/// guide. The photo carousel auto-rotates every 15s ([_autoRotateInterval])
+/// and resets its timer on manual swipe ([_onManualInteraction]) so it never
+/// fights the farmer for control of the page.
 class DiseaseDetailScreen extends StatefulWidget {
   final Disease disease;
   final String cropName;

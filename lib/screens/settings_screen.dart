@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import '../providers/app_state_provider.dart';
 import '../utils/constants.dart';
 
+/// Lets the user pick a Material 3 theme seed colour, persisted via
+/// [AppStateProvider.setThemeSeed]. Disease severity colours
+/// (see [severityColor]) are semantic and intentionally don't change here.
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -62,6 +65,18 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 );
               }),
+              const SizedBox(height: 24),
+              const Divider(),
+              const SizedBox(height: 8),
+              Text('About',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700, color: colorScheme.primary)),
+              const SizedBox(height: 4),
+              Text('$kAppName — Version $kAppVersion',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: Colors.grey[600])),
             ],
           );
         },
