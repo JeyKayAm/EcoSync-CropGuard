@@ -11,8 +11,14 @@ import '../utils/constants.dart';
 class DiseaseCard extends StatelessWidget {
   final Disease disease;
   final VoidCallback onTap;
+  final String? matchLabel;
 
-  const DiseaseCard({super.key, required this.disease, required this.onTap});
+  const DiseaseCard({
+    super.key,
+    required this.disease,
+    required this.onTap,
+    this.matchLabel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +87,14 @@ class DiseaseCard extends StatelessWidget {
                               color.withValues(alpha: 0.12),
                               color,
                             ),
+                            if (matchLabel != null) ...[
+                              const SizedBox(width: 8),
+                              _chip(
+                                matchLabel!,
+                                kAccentGreen.withValues(alpha: 0.15),
+                                kPrimaryGreen,
+                              ),
+                            ],
                           ],
                         ),
                       ],

@@ -56,6 +56,17 @@ CREATE TABLE IF NOT EXISTS symptoms (
     stage       TEXT    NOT NULL CHECK(stage IN ('early','mid','late'))
 );
 
+CREATE TABLE IF NOT EXISTS symptom_tags (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    label       TEXT    NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS disease_symptom_tags (
+    disease_id  INTEGER NOT NULL REFERENCES diseases(id),
+    tag_id      INTEGER NOT NULL REFERENCES symptom_tags(id),
+    PRIMARY KEY (disease_id, tag_id)
+);
+
 CREATE TABLE IF NOT EXISTS treatments (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     disease_id          INTEGER NOT NULL REFERENCES diseases(id),
@@ -81,6 +92,7 @@ CREATE INDEX IF NOT EXISTS idx_diseases_crop     ON diseases(crop_id);
 CREATE INDEX IF NOT EXISTS idx_diseases_part     ON diseases(plant_part);
 CREATE INDEX IF NOT EXISTS idx_symptoms_disease  ON symptoms(disease_id);
 CREATE INDEX IF NOT EXISTS idx_treatments_disease ON treatments(disease_id);
+CREATE INDEX IF NOT EXISTS idx_dst_tag           ON disease_symptom_tags(tag_id);
 """
 
 # ─── Crops ────────────────────────────────────────────────────
@@ -395,6 +407,68 @@ SYMPTOMS = [
     (25, 'Patches spread between roots in storage under humid conditions', 'late'),
 ]
 
+# ─── Symptom Tags (shared checklist vocabulary for the Symptom Checker) ──
+# Curated from the free-text SYMPTOMS above — same sourcing, just normalized
+# into a shared vocabulary a user can pick from as checklist input rather
+# than only viewing symptoms read-only per disease.
+
+SYMPTOM_TAGS = [
+    (1,  'Yellowing of lower/older leaves'),
+    (2,  'Small pale or yellow-bordered leaf spots'),
+    (3,  'Circular/oval leaf spots with a dark or brown border'),
+    (4,  'Elongated grey-tan or grey-green leaf lesions'),
+    (5,  'Leaf lesions merging, causing dieback or premature leaf death'),
+    (6,  'Powdery, mouldy, or fungal growth visible on plant surface'),
+    (7,  'Raised pustules on leaf surface'),
+    (8,  'Yellow streaking or striping along leaf veins'),
+    (9,  'Mosaic or mottled leaf colour pattern'),
+    (10, 'Leaf curling, distortion, or blistering'),
+    (11, 'Water-soaked spots on leaves'),
+    (12, 'Stunted plant growth'),
+    (13, 'Wilting despite normal soil moisture'),
+    (14, 'Dark lesion or rot at stem base / soil line'),
+    (15, 'Soft, rotting, or collapsed stem/stalk tissue'),
+    (16, 'Plant lodging (falling over)'),
+    (17, 'Internal stem/vascular discolouration'),
+    (18, 'Premature or heavy leaf drop (defoliation)'),
+    (19, 'Sunken or dark lesions on storage roots/tubers'),
+    (20, 'Internal root/tuber flesh discolouration'),
+    (21, 'Surface blemishes on root/tuber skin only'),
+    (22, 'Grain head or cob replaced by abnormal/fungal mass'),
+    (23, 'Sticky exudate on flowers or developing grain'),
+    (24, 'No visible field symptom (risk shows post-harvest/in storage)'),
+]
+
+# (disease_id, tag_id) — each disease mapped to the tags matching its
+# SYMPTOMS entries above.
+DISEASE_SYMPTOM_TAGS = [
+    (1, 2), (1, 4), (1, 5),                    # Grey Leaf Spot
+    (2, 11), (2, 4), (2, 5),                   # Northern Corn Leaf Blight
+    (3, 8), (3, 12), (3, 1),                   # Maize Streak Virus
+    (4, 7), (4, 5),                            # Common Rust
+    (5, 1), (5, 15), (5, 16),                  # Stalk Rot
+    (6, 2), (6, 6), (6, 5),                    # Blue Mould
+    (7, 13), (7, 14), (7, 17),                 # Black Shank
+    (8, 9), (8, 10), (8, 12),                  # Tobacco Mosaic Virus
+    (9, 2), (9, 3), (9, 5),                    # Frogeye Leaf Spot
+    (10, 11), (10, 2), (10, 5),                # Wildfire
+    (11, 12), (11, 9),                         # Groundnut Rosette Virus
+    (12, 2), (12, 3), (12, 18),                # Early Leaf Spot
+    (13, 2), (13, 3), (13, 18),                # Late Leaf Spot
+    (14, 24), (14, 6),                         # Aflatoxin Contamination
+    (15, 24), (15, 9), (15, 12),               # Groundnut Rosette Assistor Virus
+    (16, 8), (16, 6), (16, 12),                # Sorghum Downy Mildew
+    (17, 12), (17, 22),                        # Head Smut
+    (18, 2), (18, 3), (18, 15),                # Anthracnose (Sorghum)
+    (19, 23), (19, 22),                        # Sorghum Ergot
+    (20, 11), (20, 4), (20, 18),               # Leaf Blight (Sorghum)
+    (21, 9), (21, 10), (21, 12),               # Sweet Potato Virus Disease
+    (22, 2), (22, 3), (22, 18),                # Alternaria Leaf Blight
+    (23, 19), (23, 20),                        # Black Rot
+    (24, 1), (24, 13), (24, 17), (24, 12),     # Fusarium Wilt
+    (25, 21),                                  # Scurf
+]
+
 # ─── Treatments ───────────────────────────────────────────────
 # (disease_id, type, product_name, active_ingredient, dosage,
 #  application_method, estimated_cost_usd, availability, source)
@@ -682,6 +756,18 @@ def main():
         SYMPTOMS,
     )
     print(f'Inserted {len(SYMPTOMS)} symptoms.')
+
+    conn.executemany(
+        'INSERT INTO symptom_tags (id,label) VALUES (?,?)',
+        SYMPTOM_TAGS,
+    )
+    print(f'Inserted {len(SYMPTOM_TAGS)} symptom tags.')
+
+    conn.executemany(
+        'INSERT INTO disease_symptom_tags (disease_id,tag_id) VALUES (?,?)',
+        DISEASE_SYMPTOM_TAGS,
+    )
+    print(f'Inserted {len(DISEASE_SYMPTOM_TAGS)} disease-symptom tag mappings.')
 
     conn.executemany(
         '''INSERT INTO treatments

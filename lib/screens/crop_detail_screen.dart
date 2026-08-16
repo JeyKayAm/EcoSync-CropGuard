@@ -4,10 +4,12 @@ import '../services/diagnostic_service.dart';
 import '../utils/constants.dart';
 import '../widgets/plant_part_card.dart';
 import 'crop_gallery_screen.dart';
+import 'symptom_checker_screen.dart';
 import 'symptom_filter_screen.dart';
 
-/// A crop's landing page: two diagnosis paths branch from here — a visual
-/// photo comparison ([CropGalleryScreen]) or narrowing down by plant part
+/// A crop's landing page: three diagnosis paths branch from here — a visual
+/// photo comparison ([CropGalleryScreen]), picking observed symptoms
+/// ([SymptomCheckerScreen]), or narrowing down by plant part
 /// ([SymptomFilterScreen]). Plant-part options shown are only the ones that
 /// actually have diseases recorded for this crop (see
 /// [DiagnosticService.getAvailablePlantParts]).
@@ -77,6 +79,26 @@ class _CropDetailScreenState extends State<CropDetailScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: colorScheme.primary,
                 foregroundColor: colorScheme.onPrimary,
+                minimumSize: const Size.fromHeight(52),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: OutlinedButton.icon(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SymptomCheckerScreen(crop: crop),
+                ),
+              ),
+              icon: const Icon(Icons.checklist_outlined),
+              label: const Text('Check Symptoms'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: colorScheme.primary,
+                side: BorderSide(color: colorScheme.primary),
                 minimumSize: const Size.fromHeight(52),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
