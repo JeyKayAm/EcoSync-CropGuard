@@ -6,6 +6,7 @@ import '../models/symptom.dart';
 import '../providers/app_state_provider.dart';
 import '../services/diagnostic_service.dart';
 import '../utils/constants.dart';
+import '../widgets/glossary_hint.dart';
 import 'image_gallery_screen.dart';
 import 'treatment_guide_screen.dart';
 
@@ -129,10 +130,12 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen> {
 
           // Description
           _section(context, 'About This Disease', disease.description),
+          GlossaryHint(text: '${disease.pathogen} ${disease.description}'),
           const SizedBox(height: 12),
 
           // Prevention
           _section(context, '🛡 Prevention', disease.prevention),
+          GlossaryHint(text: disease.prevention),
           const SizedBox(height: 12),
 
           // Symptoms
@@ -334,6 +337,9 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen> {
                   ],
                 ),
               ),
+            ),
+            GlossaryHint(
+              text: symptoms.map((s) => s.description).join(' '),
             ),
           ],
         );

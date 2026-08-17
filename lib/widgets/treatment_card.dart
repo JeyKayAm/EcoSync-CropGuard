@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/treatment.dart';
 import '../utils/constants.dart';
+import 'glossary_hint.dart';
 
 /// One treatment record on [TreatmentGuideScreen] — organic/chemical badge,
 /// product info, dosage, and its bibliographic [Treatment.source].
@@ -61,6 +62,10 @@ class TreatmentCard extends StatelessWidget {
             _row(context, 'Dosage', treatment.dosage),
             _row(context, 'Application', treatment.applicationMethod),
             _row(context, 'Where to buy', treatment.availability),
+            GlossaryHint(
+              text: '${treatment.dosage} ${treatment.applicationMethod} '
+                  '${treatment.activeIngredient} ${treatment.source}',
+            ),
             const SizedBox(height: 6),
             Text('Source: ${treatment.source}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
