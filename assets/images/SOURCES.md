@@ -14,6 +14,11 @@ the disease's written symptom description before being added — several
 near-miss candidates (wrong crop, wrong disease stage, wrong pathogen) were
 rejected during sourcing.
 
+These photos also back the in-app Photo Lookup (Beta) feature: a hash
+derived from each photo below is bundled in the app database and compared
+against a farmer's own photo, but no image data itself is transmitted or
+newly exposed by that feature. Same license-clearance requirement applies.
+
 **Coverage: 24 of 25 diseases have at least one real reference photo.**
 The exception, Groundnut Rosette Assistor Virus (GRAV), is intentional —
 GRAV alone is scientifically asymptomatic (confirmed in the ICRISAT source

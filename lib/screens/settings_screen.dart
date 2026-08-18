@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/app_state_provider.dart';
 import '../utils/constants.dart';
 import 'glossary_screen.dart';
+import 'help_screen.dart';
 
 /// Lets the user pick a Material 3 theme seed colour, persisted via
 /// [AppStateProvider.setThemeSeed]. Disease severity colours
@@ -70,6 +71,22 @@ class SettingsScreen extends StatelessWidget {
               const Divider(),
               const SizedBox(height: 8),
               Card(
+                margin: const EdgeInsets.only(bottom: 10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                child: ListTile(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const HelpScreen()),
+                  ),
+                  leading: Icon(Icons.help_outline, color: colorScheme.primary),
+                  title: const Text('Help & How to Use',
+                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: const Text('Instructions for using the app\'s features'),
+                  trailing: const Icon(Icons.chevron_right),
+                ),
+              ),
+              Card(
                 margin: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -84,6 +101,20 @@ class SettingsScreen extends StatelessWidget {
                   subtitle: const Text('Plain-language definitions for technical terms'),
                   trailing: const Icon(Icons.chevron_right),
                 ),
+              ),
+              const SizedBox(height: 24),
+              const Divider(),
+              const SizedBox(height: 8),
+              Text('Photo Lookup (Beta)',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700, color: colorScheme.primary)),
+              const SizedBox(height: 4),
+              Text(
+                kPhotoLookupDisclaimer,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Colors.grey[600]),
               ),
               const SizedBox(height: 24),
               const Divider(),

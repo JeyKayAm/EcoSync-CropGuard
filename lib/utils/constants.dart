@@ -51,3 +51,19 @@ const List<Map<String, dynamic>> kThemeSeedOptions = [
 const String kDisclaimer =
     'This app is a decision-support tool. Where a diagnosis is uncertain, '
     'consult your AGRITEX extension officer before applying treatments.';
+
+// Photo Lookup compares a photo against a small set of reference images
+// using visual-similarity matching (not a trained model) — see
+// PhotoMatchService. Shown both as a low-confidence banner on the results
+// screen and as a standing note in Settings.
+const String kPhotoLookupDisclaimer =
+    'Photo Lookup is experimental. It compares your photo against a small '
+    'reference set (a few images per disease, and not every disease has '
+    'one yet) using visual similarity — it does not "recognise" diseases '
+    'the way a trained expert would. It works best when your photo closely '
+    'resembles one of our reference photos (similar framing, lighting and '
+    'close-up angle); a typical field photo of a real disease often won\'t '
+    'score as a confident match even when correct, so a "no confident '
+    'match" result does not mean the disease isn\'t present. Always treat '
+    'results as a starting point, not a diagnosis, and consult your '
+    'AGRITEX extension officer when unsure.';

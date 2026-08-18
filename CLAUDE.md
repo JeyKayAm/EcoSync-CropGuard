@@ -8,10 +8,14 @@ architecture and conventions instead of repeating them.
 
 EcoSync-CropGuard: an offline-first crop disease reference/diagnostic app for
 Zimbabwean smallholder farmers, covering 5 crops (maize, tobacco, groundnuts,
-sorghum, sweet potatoes), Android only (Flutter/Dart, `minSdk` 21). There is
-no camera/ML detection — diagnosis is a symptom/photo lookup tool, not image
-classification. See `kDisclaimer` in `lib/utils/constants.dart` for the
-decision-support framing shown in-app.
+sorghum, sweet potatoes), Android only (Flutter/Dart, `minSdk` 21). Diagnosis
+is a symptom/photo lookup tool, not a trained image classifier — there's no
+ML model and no training pipeline. The one exception is `PhotoMatchService`'s
+beta "Photo Lookup" feature, which ranks a captured/picked photo against the
+reference image set using perceptual-hash (aHash) visual similarity, entirely
+on-device and with no learned model — see `lib/utils/phash.dart`. See
+`kDisclaimer` and `kPhotoLookupDisclaimer` in `lib/utils/constants.dart` for
+the decision-support framing shown in-app.
 
 ## Architecture
 
@@ -48,7 +52,8 @@ lib/
   app.dart           EcoSyncApp (Provider setup) + MaterialApp/theme
   models/            Crop, Disease, Symptom, Treatment, Bookmark — one per DB table
   services/          DatabaseHelper (DB lifecycle + generic query/insert/delete),
-                      BookmarkService, DiagnosticService, TreatmentService
+                      BookmarkService, DiagnosticService, TreatmentService,
+                      PhotoMatchService (perceptual-hash photo similarity)
   providers/         AppStateProvider — crops, bookmarks, loading, theme seed
   screens/           One file per screen; see class-level doc comment on each
                       for what it does and how it's reached
@@ -56,6 +61,9 @@ lib/
   utils/constants.dart   Colours, plant-part list/order, theme options, disclaimer text
 scripts/
   populate_db.py         Generates assets/db/cropguard.db (schema + seed data)
+  generate_phashes.py    Precomputes perceptual hashes for reference photos into
+                          scripts/phash_cache.json (needs Pillow — run before
+                          populate_db.py, which reads the cache but stays stdlib-only)
   prepare_images.py      Downloads/crops open dataset photos into assets/images/
   compress_image.py      One-off resize/compress helper (ImageMagick substitute)
   generate_icons_test.dart  Rasterizes SVG brand marks to PNG launcher/splash icons

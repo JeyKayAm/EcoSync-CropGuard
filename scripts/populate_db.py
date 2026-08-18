@@ -20,9 +20,23 @@ All disease and treatment data is sourced from:
 
 import sqlite3
 import os
+import json
 
 DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'assets', 'db', 'cropguard.db')
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+
+# Perceptual hashes for reference photos, precomputed by generate_phashes.py
+# (needs Pillow, so that step stays out of this stdlib-only script). Powers
+# the on-device Photo Lookup feature's image-similarity ranking.
+PHASH_CACHE_PATH = os.path.join(os.path.dirname(__file__), 'phash_cache.json')
+if os.path.exists(PHASH_CACHE_PATH):
+    with open(PHASH_CACHE_PATH) as f:
+        PHASH_CACHE = json.load(f)
+else:
+    PHASH_CACHE = {}
+    print(f'Warning: {PHASH_CACHE_PATH} not found — run generate_phashes.py '
+          f'first, or image_phashes will be blank for all diseases. '
+          f'Continuing with empty hashes.')
 
 # ─── Schema ───────────────────────────────────────────────────
 
@@ -46,7 +60,8 @@ CREATE TABLE IF NOT EXISTS diseases (
     severity    TEXT    NOT NULL CHECK(severity IN ('Low','Medium','High')),
     description TEXT    NOT NULL,
     prevention  TEXT    NOT NULL,
-    image_paths TEXT    NOT NULL  -- comma-separated relative asset paths
+    image_paths TEXT    NOT NULL,  -- comma-separated relative asset paths
+    image_phashes TEXT NOT NULL DEFAULT ''  -- comma-separated 16-hex-char aHashes, same order as image_paths
 );
 
 CREATE TABLE IF NOT EXISTS symptoms (
@@ -743,11 +758,29 @@ def main():
     )
     print(f'Inserted {len(CROPS)} crops.')
 
+    diseases_with_phashes = []
+    missing_hashes = []
+    for row in DISEASES:
+        image_paths = row[-1]
+        paths = [p for p in image_paths.split(',') if p]
+        phashes = []
+        for path in paths:
+            h = PHASH_CACHE.get(path)
+            if h is None:
+                missing_hashes.append(path)
+            else:
+                phashes.append(h)
+        diseases_with_phashes.append(row + (','.join(phashes),))
+    if missing_hashes:
+        print(f'Warning: no cached phash for {len(missing_hashes)} image(s), '
+              f'e.g. {missing_hashes[0]!r} — run generate_phashes.py to refresh '
+              f'scripts/phash_cache.json.')
+
     conn.executemany(
         '''INSERT INTO diseases
-           (id,crop_id,name,pathogen,plant_part,severity,description,prevention,image_paths)
-           VALUES (?,?,?,?,?,?,?,?,?)''',
-        DISEASES,
+           (id,crop_id,name,pathogen,plant_part,severity,description,prevention,image_paths,image_phashes)
+           VALUES (?,?,?,?,?,?,?,?,?,?)''',
+        diseases_with_phashes,
     )
     print(f'Inserted {len(DISEASES)} diseases.')
 

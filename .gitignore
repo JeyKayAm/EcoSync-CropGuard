@@ -19,6 +19,10 @@ android/gradlew.bat
 .idea/
 .vscode/settings.json
 *.iml
+devtools_options.yaml
+
+# Build artifacts
+releases.zip
 
 # OS
 .DS_Store

@@ -16,6 +16,8 @@ dependencies:
   flutter_svg: ^2.0.10        # SVG asset support (crop icons, logo)
   photo_view: ^0.15.0         # Pinch-to-zoom full-screen image viewer
   shared_preferences: ^2.3.2  # Persist the user's chosen theme colour
+  image_picker: ^1.1.2        # Camera capture / gallery pick for Photo Lookup
+  image: ^4.2.0                # Pure-Dart image decode + resize for perceptual hashing
 
 dev_dependencies:
   flutter_test:
