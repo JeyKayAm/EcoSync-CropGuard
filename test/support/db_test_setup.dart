@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 /// Test-only [PathProviderPlatform] that points the app's documents
@@ -29,6 +30,7 @@ Directory initTestDatabaseEnvironment() {
   TestWidgetsFlutterBinding.ensureInitialized();
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
+  SharedPreferences.setMockInitialValues({});
 
   final tempDir = Directory.systemTemp.createTempSync('cropguard_test_');
   PathProviderPlatform.instance = FakePathProviderPlatform(tempDir);

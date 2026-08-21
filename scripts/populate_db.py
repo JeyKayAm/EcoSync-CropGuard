@@ -95,12 +95,20 @@ CREATE TABLE IF NOT EXISTS treatments (
     source              TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS profiles (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    name        TEXT    NOT NULL UNIQUE,
+    is_default  INTEGER NOT NULL DEFAULT 0 CHECK(is_default IN (0, 1)),
+    created_at  TEXT    NOT NULL,
+    updated_at  TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS bookmarks (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    disease_id   INTEGER NOT NULL,
-    disease_name TEXT    NOT NULL,
-    crop_name    TEXT    NOT NULL,
-    saved_at     TEXT    NOT NULL
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    profile_id  INTEGER NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+    disease_id  INTEGER NOT NULL REFERENCES diseases(id),
+    saved_at    TEXT    NOT NULL,
+    UNIQUE(profile_id, disease_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_diseases_crop     ON diseases(crop_id);
@@ -108,6 +116,7 @@ CREATE INDEX IF NOT EXISTS idx_diseases_part     ON diseases(plant_part);
 CREATE INDEX IF NOT EXISTS idx_symptoms_disease  ON symptoms(disease_id);
 CREATE INDEX IF NOT EXISTS idx_treatments_disease ON treatments(disease_id);
 CREATE INDEX IF NOT EXISTS idx_dst_tag           ON disease_symptom_tags(tag_id);
+CREATE INDEX IF NOT EXISTS idx_bookmarks_profile_saved ON bookmarks(profile_id, saved_at DESC);
 """
 
 # ─── Crops ────────────────────────────────────────────────────
@@ -751,6 +760,14 @@ def main():
     conn = sqlite3.connect(DB_PATH)
     conn.executescript(SCHEMA)
     print('Schema created.')
+
+    now = '1970-01-01T00:00:00.000'
+    conn.execute(
+        '''INSERT INTO profiles (id, name, is_default, created_at, updated_at)
+           VALUES (1, ?, 1, ?, ?)''',
+        ('Shared Bookmarks', now, now),
+    )
+    print('Inserted default shared profile.')
 
     conn.executemany(
         'INSERT INTO crops (id,name,local_name,description,image_path) VALUES (?,?,?,?,?)',

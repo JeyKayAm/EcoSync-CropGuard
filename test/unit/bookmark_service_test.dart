@@ -21,59 +21,63 @@ void main() {
 
   test('edge case: isBookmarked is false for a disease never bookmarked',
       () async {
-    expect(await svc.isBookmarked(1), isFalse);
+    expect(await svc.isBookmarked(profileId: 1, diseaseId: 1), isFalse);
   });
 
   test('add() persists a bookmark that isBookmarked() and getAll() can see',
       () async {
     await svc.add(const Bookmark(
+      profileId: 1,
       diseaseId: 1,
       diseaseName: 'Grey Leaf Spot',
       cropName: 'Maize',
       savedAt: '2026-01-01T00:00:00.000',
     ));
 
-    expect(await svc.isBookmarked(1), isTrue);
-    final all = await svc.getAll();
+    expect(await svc.isBookmarked(profileId: 1, diseaseId: 1), isTrue);
+    final all = await svc.getAll(profileId: 1);
     expect(all, hasLength(1));
     expect(all.first.diseaseName, 'Grey Leaf Spot');
   });
 
   test('getAll() orders most-recently-saved first', () async {
     await svc.add(const Bookmark(
+      profileId: 1,
       diseaseId: 1,
       diseaseName: 'Grey Leaf Spot',
       cropName: 'Maize',
       savedAt: '2026-01-01T00:00:00.000',
     ));
     await svc.add(const Bookmark(
+      profileId: 1,
       diseaseId: 2,
       diseaseName: 'Northern Corn Leaf Blight',
       cropName: 'Maize',
       savedAt: '2026-01-02T00:00:00.000',
     ));
 
-    final all = await svc.getAll();
+    final all = await svc.getAll(profileId: 1);
     expect(all.map((b) => b.diseaseId).toList(), [2, 1]);
   });
 
   test('remove() deletes by disease id, not bookmark id', () async {
     await svc.add(const Bookmark(
+      profileId: 1,
       diseaseId: 1,
       diseaseName: 'Grey Leaf Spot',
       cropName: 'Maize',
       savedAt: '2026-01-01T00:00:00.000',
     ));
 
-    await svc.remove(1);
+    await svc.remove(profileId: 1, diseaseId: 1);
 
-    expect(await svc.isBookmarked(1), isFalse);
-    expect(await svc.getAll(), isEmpty);
+    expect(await svc.isBookmarked(profileId: 1, diseaseId: 1), isFalse);
+    expect(await svc.getAll(profileId: 1), isEmpty);
   });
 
   test('edge case: remove() on a disease that was never bookmarked is a no-op',
       () async {
-    await svc.remove(1);
-    expect(await svc.getAll(), isEmpty);
+    await svc.remove(profileId: 1, diseaseId: 1);
+    expect(await svc.getAll(profileId: 1), isEmpty);
   });
 }

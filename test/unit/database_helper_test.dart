@@ -69,9 +69,8 @@ void main() {
     test('insert() writes a row and delete() removes it by where clause',
         () async {
       final id = await db.insert('bookmarks', {
+        'profile_id': 1,
         'disease_id': 999,
-        'disease_name': 'Test Disease',
-        'crop_name': 'Test Crop',
         'saved_at': '2026-01-01T00:00:00.000',
       });
       expect(id, greaterThan(0));
@@ -96,16 +95,14 @@ void main() {
         () async {
       final firstId = await db.insert('bookmarks', {
         'id': 500,
+        'profile_id': 1,
         'disease_id': 998,
-        'disease_name': 'Original Name',
-        'crop_name': 'Test Crop',
         'saved_at': '2026-01-01T00:00:00.000',
       });
       final secondId = await db.insert('bookmarks', {
         'id': 500,
+        'profile_id': 1,
         'disease_id': 998,
-        'disease_name': 'Replaced Name',
-        'crop_name': 'Test Crop',
         'saved_at': '2026-01-02T00:00:00.000',
       });
       expect(secondId, firstId);
@@ -113,7 +110,7 @@ void main() {
       final rows =
           await db.query('bookmarks', where: 'id = ?', whereArgs: [500]);
       expect(rows, hasLength(1));
-      expect(rows.first['disease_name'], 'Replaced Name');
+        expect(rows.first['saved_at'], '2026-01-02T00:00:00.000');
 
       await db.delete('bookmarks', where: 'id = ?', whereArgs: [500]);
     });

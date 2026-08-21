@@ -115,6 +115,7 @@ void main() {
   group('Bookmark', () {
     test('toMap omits id when null (pre-insert)', () {
       const bookmark = Bookmark(
+        profileId: 1,
         diseaseId: 1,
         diseaseName: 'Grey Leaf Spot',
         cropName: 'Maize',
@@ -126,6 +127,7 @@ void main() {
     test('toMap includes id once assigned (post-insert)', () {
       const bookmark = Bookmark(
         id: 7,
+        profileId: 1,
         diseaseId: 1,
         diseaseName: 'Grey Leaf Spot',
         cropName: 'Maize',
@@ -137,9 +139,8 @@ void main() {
     test('fromMap/toMap round-trip', () {
       final map = {
         'id': 7,
+        'profile_id': 1,
         'disease_id': 1,
-        'disease_name': 'Grey Leaf Spot',
-        'crop_name': 'Maize',
         'saved_at': '2026-01-01T00:00:00.000',
       };
       expect(Bookmark.fromMap(map).toMap(), map);

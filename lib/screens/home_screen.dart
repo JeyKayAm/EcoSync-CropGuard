@@ -66,9 +66,23 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 color: colorScheme.primary,
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
-                child: const Text(
-                  'Select the affected crop to begin diagnosis.',
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Select the affected crop to begin diagnosis.',
+                      style: TextStyle(color: Colors.white70, fontSize: 14),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Active profile: ${state.activeProfileName}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(

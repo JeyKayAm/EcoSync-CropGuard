@@ -32,8 +32,15 @@ OUTPUT_PATH = os.path.join(os.path.dirname(__file__), 'phash_cache.json')
 
 
 def average_hash(image_path: str) -> str:
+    # Resize first (box/area average over RGB), *then* grayscale — same
+    # order and filter as lib/utils/phash.dart's computeAverageHash (which
+    # uses img.copyResize(..., interpolation: Interpolation.average) before
+    # img.grayscale). Grayscaling before resizing, or resizing with a
+    # sharpening filter like LANCZOS, changes which pixels land on which
+    # side of the mean threshold and desyncs the two hashes for the same
+    # source photo.
     with Image.open(image_path) as img:
-        small = img.convert('L').resize((8, 8), Image.LANCZOS)
+        small = img.convert('RGB').resize((8, 8), Image.BOX).convert('L')
         pixels = list(small.getdata())
     mean = sum(pixels) / len(pixels)
     bits = ''.join('1' if p >= mean else '0' for p in pixels)

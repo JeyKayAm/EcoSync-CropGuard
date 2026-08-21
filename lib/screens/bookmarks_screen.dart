@@ -18,7 +18,12 @@ class BookmarksScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
-        title: const Text('Saved Diagnoses'),
+        title: Consumer<AppStateProvider>(
+          builder: (context, state, _) => Text(
+            'Saved Diagnoses • ${state.activeProfileName}',
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
       ),
       body: Consumer<AppStateProvider>(
         builder: (context, state, _) {

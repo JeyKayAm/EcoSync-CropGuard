@@ -2,6 +2,7 @@
 /// Mirrors the `bookmarks` table; [fromMap]/[toMap] match its column names.
 class Bookmark {
   final int? id; // nullable — null before first insert
+  final int profileId;
   final int diseaseId;
   final String diseaseName;
   final String cropName;
@@ -9,6 +10,7 @@ class Bookmark {
 
   const Bookmark({
     this.id,
+    required this.profileId,
     required this.diseaseId,
     required this.diseaseName,
     required this.cropName,
@@ -17,17 +19,17 @@ class Bookmark {
 
   factory Bookmark.fromMap(Map<String, dynamic> map) => Bookmark(
         id: map['id'] as int?,
+        profileId: (map['profile_id'] as int?) ?? 1,
         diseaseId: map['disease_id'] as int,
-        diseaseName: map['disease_name'] as String,
-        cropName: map['crop_name'] as String,
+        diseaseName: (map['disease_name'] as String?) ?? '',
+        cropName: (map['crop_name'] as String?) ?? '',
         savedAt: map['saved_at'] as String,
       );
 
   Map<String, dynamic> toMap() => {
         if (id != null) 'id': id,
+        'profile_id': profileId,
         'disease_id': diseaseId,
-        'disease_name': diseaseName,
-        'crop_name': cropName,
         'saved_at': savedAt,
       };
 }
